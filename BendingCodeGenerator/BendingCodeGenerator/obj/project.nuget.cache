@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "oq+25GA0XoVsQJ9gMQrVvVs1qblo1/br9WVC5wHBoKkMJJ9ypNlvtL9Pb9avx6pehIyU7hkudCLrIrGHo9ax7Q==",
+  "success": true,
+  "projectFilePath": "P:\\SuzanNaturalTech\\Software\\BendingMachineCode\\BendingCodeGenerator\\BendingCodeGenerator\\BendingCodeGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
