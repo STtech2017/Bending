@@ -1,0 +1,13 @@
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\ST tech Bending [CAD][CAM].exe.config
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\ST tech Bending [CAD][CAM].exe
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\ST tech Bending [CAD][CAM].pdb
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].csproj.AssemblyReference.cache
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].csproj.SuggestedBindingRedirects.cache
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST_tech_Bending__CAD__CAM_.homeForm.resources
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST_tech_Bending__CAD__CAM_.Properties.Resources.resources
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].csproj.GenerateResource.cache
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].csproj.CoreCompileInputs.cache
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].exe
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].pdb
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST_tech_Bending__CAD__CAM_.fileBrowser.resources
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST_tech_Bending__CAD__CAM_.newFile.resources
