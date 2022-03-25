@@ -14,3 +14,7 @@ P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending 
 P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\Newtonsoft.Json.dll
 P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\Newtonsoft.Json.xml
 P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].csproj.CopyComplete
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\ST tech Bending [CAD][CAM].exe.manifest
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\ST tech Bending [CAD][CAM].application
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].exe.manifest
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].application
