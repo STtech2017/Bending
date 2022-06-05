@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -82,19 +82,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="jsonReader.cs" />
-    <Compile Include="fileBrowser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fileBrowser.Designer.cs">
-      <DependentUpon>fileBrowser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="newFIle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="newFIle.Designer.cs">
-      <DependentUpon>newFIle.cs</DependentUpon>
-    </Compile>
     <Compile Include="homeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,12 +90,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="fileBrowser.resx">
-      <DependentUpon>fileBrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="newFIle.resx">
-      <DependentUpon>newFIle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="homeForm.resx">
       <DependentUpon>homeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +113,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\circle.json" />
+    <None Include="Resources\eclips.json" />
+    <None Include="Resources\squre.json" />
     <None Include="ST tech Bending [CAD][CAM]_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

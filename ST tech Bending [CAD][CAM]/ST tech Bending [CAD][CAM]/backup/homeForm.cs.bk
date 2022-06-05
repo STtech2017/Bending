@@ -1,0 +1,131 @@
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using Button = System.Windows.Forms.Button;
+using TextBox = System.Windows.Forms.TextBox;
+using Label = System.Windows.Forms.Label;
+
+namespace ST_tech_Bending__CAD__CAM_
+{
+    public partial class homeForm : Form
+    {
+        //
+        // create new folder in side document library for saving shape
+        //
+        //private DataGridView dataGridView1 = new DataGridView();
+        private BindingSource bindingSource1 = new BindingSource();
+        protected string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "STtechBending Shape";
+        protected string codeDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "STtechBending Shape\\code";
+        string shapeType = string.Empty;
+        public homeForm()
+        {
+            InitializeComponent();
+        }
+        
+
+        private void homeForm_Load(object sender, EventArgs e)
+        {
+            // If directory does not exist, create it
+
+            // change condition with try
+            try
+            {
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                    Directory.CreateDirectory(codeDir);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            shapeSel.SelectedIndex = 0;
+            shapeSel.DropDownStyle = ComboBoxStyle.DropDownList;
+            
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+            // open new form for open saved file
+            //
+            Form fb = new fileBrowser();
+            fb.ShowDialog();
+        }
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ns = new newFile();
+            ns.ShowDialog();
+        }
+        protected double rad = 0.01745;
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            //
+            // center point value
+            //
+            int xCenter = panel1.Width / 2;
+            int yCenter = panel1.Height / 2;
+            int xTotal = panel1.Height;
+            int yTotal = panel1.Width;
+
+            Pen blackpen = new Pen(Color.Black, 5);
+            Pen redpen = new Pen(Color.Red, 5);
+            Graphics g = e.Graphics;
+
+            g.DrawLine(redpen, xCenter, 0, xCenter, xTotal);
+            g.DrawLine(redpen, 0, yCenter, yTotal, yCenter);
+
+            g.Dispose();
+
+            Graphics gs = panel1.CreateGraphics();
+
+            switch (shapeType)
+            { 
+            }
+        }
+
+
+        private void draw_Click_1(object sender, EventArgs e)
+        {
+            //
+            // update drawing
+            //
+            panel1.Invalidate();
+        }
+
+        private void saveGcode_Click(object sender, EventArgs e)
+        {
+            //
+            // generat gcode
+            //
+            string gcode = string.Empty;
+            gcode += "hi fdbhfnofbrivndfv v ervd vncdksvc v dsropds cd\n fhuiefejkfnrjfnreifrfjnrif\n";
+            //
+            // save gcode in tap file
+            //
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                InitialDirectory = codeDir,
+                RestoreDirectory = true,
+                CheckFileExists = false,
+                CheckPathExists = true,
+                Filter = "Text files (*.txt)|*.txt |TAP(*.tap)|*.tap |All files (*.*)|*.*"
+            };
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveFileDialog1.FileName;
+                //MessageBox.Show(path);
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    writer.WriteLine(gcode);
+                }
+            }
+            //
+            // open file in notepad
+            //
+        }
+    }
+}

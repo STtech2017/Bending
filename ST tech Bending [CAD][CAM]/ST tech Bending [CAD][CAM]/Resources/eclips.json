@@ -1,0 +1,26 @@
+{
+    "id": "eclips",
+    "shapeName": "Eclips",
+    "shapeType": "eclips",
+    "labelCount": 2,
+    "textBoxCount": 2,
+    "labels": [
+      {
+        "labelName": "Radius",
+        "labelText": "Radius"
+      },
+      {
+        "labelName": "Radius2",
+        "labelText": "Radius2"
+      }
+    ],
+    "textBoxs": [
+        {
+          "textBoxName": "radius"
+        },
+        {
+          "textBoxName": "radius2"
+        }
+    ]
+  }
+  

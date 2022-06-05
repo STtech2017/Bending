@@ -1,0 +1,18 @@
+{
+  "id": "squre",
+  "shapeName": "Squre",
+  "shapeType": "squre",
+  "labelCount": 1,
+  "textBoxCount": 1,
+  "labels": [
+    {
+      "labelName": "Length",
+      "labelText": "Length"
+    }
+  ],
+  "textBoxs": [
+    {
+      "textBoxName": "Length"
+    }
+  ]
+}

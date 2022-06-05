@@ -1,15 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using Button = System.Windows.Forms.Button;
@@ -23,69 +14,28 @@ namespace ST_tech_Bending__CAD__CAM_
         //
         // create new folder in side document library for saving shape
         //
-        protected string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "STtechBending Shape";
-        protected string codeDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "STtechBending Shape\\code";
-        string shapeType = string.Empty;
+        string gcode = string.Empty;
+        //gcode += "hi fdbhfnofbrivndfv v ervd vncdksvc v dsropds cd\n fhuiefejkfnrjfnreifrfjnrif\n";
+               
         public homeForm()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
+
+
         private void homeForm_Load(object sender, EventArgs e)
         {
             // If directory does not exist, create it
-            //MessageBox.Show(dir);            
-            if (!Directory.Exists(dir))
+
+            // change condition with try
+            try
             {
-                Directory.CreateDirectory(dir);
-                Directory.CreateDirectory(codeDir);
+                shapeSel.SelectedIndex = 0;
             }
-            else
+            catch (Exception ex)
             {
-                shapeSel.Items.Clear();
-                string[] files = Directory.GetFiles(dir, "*.json");
-                //DirectoryInfo dir = new DirectoryInfo(path);
-                //FileInfo[] files = dir.GetFiles("*.txt");
-                shapeSel.Items.AddRange(files.Select((string filePath) => Path.GetFileNameWithoutExtension(filePath)).ToArray());
+
             }
-            updataGrid();
-            shapeSel.SelectedIndex = 0;
-            shapeSel.DropDownStyle = ComboBoxStyle.DropDownList;
-            //
-            // load canvas 
-            //
-        }
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //
-            // open new form for open saved file
-            //
-            Form fb = new fileBrowser();
-            fb.ShowDialog();
-        }
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form ns = new newFile();
-            ns.ShowDialog();
-        }
-        private void updataGrid()
-        {
-            splitContainer1.SplitterWidth = 10;
-
-            dataGridView1.ColumnCount = 3;
-
-            dataGridView1.Columns[0].Width = 100;
-            dataGridView1.Columns[1].Width = 100;
-            dataGridView1.Columns[2].Width = 100;
-
-            dataGridView1.Columns[0].Name = "Line Number";
-            dataGridView1.Columns[1].Name = "Liner";
-            dataGridView1.Columns[2].Name = "Angle";
-            //add rows 
-            ArrayList row = new ArrayList();
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            panel1.Invalidate();
         }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -97,168 +47,869 @@ namespace ST_tech_Bending__CAD__CAM_
             int xTotal = panel1.Height;
             int yTotal = panel1.Width;
 
-            Pen blackpen = new Pen(Color.Black);
+            float dia = 0;
+            float radius = 0;
+            float radius1 = 0;
+            float radius2 = 0;
+            float length = 0;
+            float length1 = 0;
+            float length2 = 0;
+            /*
+            // Create points that define polygon.
+            PointF point1 = new PointF();
+            PointF point2 = new PointF();
+            PointF point3 = new PointF();
+            PointF point4 = new PointF();
+            PointF point5 = new PointF();
+            PointF point6 = new PointF();
+            PointF point7 = new PointF();
+            PointF point8 = new PointF();
+            PointF point9 = new PointF();
+            PointF point10 = new PointF();
+            PointF point11 = new PointF();
+            */
+            Pen blackpen = new Pen(Color.Black, 2);
             Pen redpen = new Pen(Color.Red, 2);
             Graphics g = e.Graphics;
-
-            g.DrawLine(redpen, xCenter, 0, xCenter, xTotal);
-            g.DrawLine(redpen, 0, yCenter, yTotal, yCenter);
-
-            g.Dispose();
-
-            Graphics gs = panel1.CreateGraphics();
-
-            //
-            // draw shape 
-            //
-            int i = 0;
-            string[] message = new string[32];
-            int dia = 0;
-            int radius = 0;
-            int radius2 = 0;
-            int length = 0;
-
-            switch (shapeType)
+            try
             {
-                case "circle":
-                    foreach (TextBox textBox in panel3.Controls.OfType<TextBox>())
-                    {
-                        message[i] = textBox.Text;
-                        //MessageBox.Show(message[i]);
-                        i++;
-                    }
-                    dia = Convert.ToInt32(message[0].ToString());
-                    radius = dia / 2;
+                g.DrawLine(redpen, xCenter, 0, xCenter, xTotal);
+                g.DrawLine(redpen, 0, yCenter, yTotal, yCenter);
 
-                    gs.DrawEllipse(blackpen, (xCenter - radius), (yCenter - radius), dia, dia);
-                    break;
+                g.Dispose();
 
-                case "squre":
-                    foreach (TextBox textBox in panel3.Controls.OfType<TextBox>())
-                    {
-                        message[i] = textBox.Text;
-                        //MessageBox.Show(message[i]);
-                        i++;
-                    }
-                    length = Convert.ToInt32(message[0].ToString());
+                Graphics gs = panel1.CreateGraphics();
+                //shapeType = shapeSel.Text;
 
-                    gs.DrawRectangle(blackpen, (xCenter - length / 2), (yCenter - length / 2), length, length);
-                    break;
+                //MessageBox.Show(shapeSel.Text);
 
-                case "eclips":
-                    foreach (TextBox textBox in panel3.Controls.OfType<TextBox>())
-                    {
-                        message[i] = textBox.Text;
-                        //MessageBox.Show(message[i]);
-                        i++;
-                    }
-                    radius = Convert.ToInt32(message[0].ToString());
-                    radius2 = Convert.ToInt32(message[1].ToString());
-
-                    gs.DrawEllipse(blackpen, (xCenter - radius), (yCenter - radius2), radius*2, radius2*2);
-                    break;
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //
-            // generat gcode
-            //
-            string gcode = string.Empty;
-            gcode += "hi fdbhfnofbrivndfv v ervd vncdksvc v dsropds cd\n fhuiefejkfnrjfnreifrfjnrif\n";
-            //
-            // save gcode in tap file
-            //
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog
-            {
-                InitialDirectory = codeDir,
-                RestoreDirectory = true,
-                CheckFileExists = false,
-                CheckPathExists = true,
-                Filter = "Text files (*.txt)|*.txt |TAP(*.tap)|*.tap |All files (*.*)|*.*"
-            };
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string path = saveFileDialog1.FileName;
-                //MessageBox.Show(path);
-                using (StreamWriter writer = new StreamWriter(path))
+                switch (shapeSel.SelectedIndex)
                 {
-                    writer.WriteLine(gcode);
+                    case 0:// window
+                        /*
+                        radius = Convert.ToInt32(textBox1.Text);
+                        length = Convert.ToInt32(textBox2.Text);
+                        dia = radius * 2;
+
+                        //draw arc
+                        gs.DrawEllipse(blackpen, (xCenter - radius), (yCenter - radius), dia, dia);
+                        // draw line 1
+                        gs.DrawLine(redpen, xCenter, yCenter, yTotal, yCenter);
+                        //draw line 2
+                        gs.DrawLine(redpen, xCenter, yCenter, yTotal, yCenter);
+                        //draw line 3
+                        gs.DrawLine(redpen, xCenter, yCenter, yTotal, yCenter);
+
+                        label2.Text = "Length : " + ((dia * Math.PI) / 2 + (length * 2) + dia) + "mm";
+                        */
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 1:// circle
+                        radius = Convert.ToInt32(textBox1.Text);
+                        dia = radius * 2;
+
+                        gs.DrawEllipse(blackpen, (xCenter - radius), (yCenter - radius), dia, dia);
+                        label2.Text = "Length : " + (dia * Math.PI) + "mm";
+                        break;
+                    case 2:// eclipse
+                        radius1 = Convert.ToInt32(textBox1.Text);
+                        radius2 = Convert.ToInt32(textBox2.Text);
+
+                        gs.DrawEllipse(blackpen, (xCenter - radius1), (yCenter - radius2), radius1 * 2, radius2 * 2);
+                        break;
+                    case 3:// semicircle
+                           //draw arc
+                        /*
+                        gs.DrawArc(blackpen, 100,100,100,100, 180, 180);//)
+                        gs.DrawLine(blackpen, 100, 150, 200, 150);
+                        */
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 4:// r-circle
+                        /*
+                        gs.DrawArc(blackpen, 100, 100, 100, 100, 90, 180);// (
+                        gs.DrawArc(blackpen, 300, 100, 100, 100, 90, -180);// )
+                        gs.DrawLine(blackpen, 150, 100, 350, 100);// -
+                        gs.DrawLine(blackpen, 150, 200, 350, 200);// -
+                        */
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 5:// trapezoid
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 6:// triangle
+                        length = Convert.ToInt32(textBox1.Text);
+
+                        var shape = new PointF[3];
+
+                        //Create 6 points
+                        for (int a = 0; a < 3; a++)
+                        {
+                            shape[a] = new PointF(
+                                xCenter + length * (float)Math.Cos(a * 120 * Math.PI / 180f),
+                                yCenter + length * (float)Math.Sin(a * 120 * Math.PI / 180f));
+                        }
+
+                        gs.DrawPolygon(Pens.Red, shape);
+
+                        break;
+                    case 7:// squre
+                        length1 = Convert.ToInt32(textBox1.Text);
+                        length2 = Convert.ToInt32(textBox2.Text);
+                        gs.DrawRectangle(blackpen, (xCenter - length1 / 2), (yCenter - length2 / 2), length1, length2);
+                        break;
+                    case 8:// pentagon  
+
+                        length = Convert.ToInt32(textBox1.Text);
+
+                        shape = new PointF[5];
+
+                        //Create 6 points
+                        for (int a = 0; a < 5; a++)
+                        {
+                            shape[a] = new PointF(
+                                xCenter + length * (float)Math.Cos(a * 72 * Math.PI / 180f),
+                                yCenter + length * (float)Math.Sin(a * 72 * Math.PI / 180f));
+                        }
+
+                        gs.DrawPolygon(Pens.Red, shape);
+
+                        break;
+                    case 9:// hexago
+                        length = Convert.ToInt32(textBox1.Text);
+
+                        shape = new PointF[6];
+
+                        //Create 6 points
+                        for (int a = 0; a < 6; a++)
+                        {
+                            shape[a] = new PointF(
+                                xCenter + length * (float)Math.Cos(a * 60 * Math.PI / 180f),
+                                yCenter + length * (float)Math.Sin(a * 60 * Math.PI / 180f));
+                        }
+
+                        gs.DrawPolygon(Pens.Red, shape);
+
+                        break;
+                    case 10:// l-octagon
+                        length = Convert.ToInt32(textBox1.Text);
+
+                        shape = new PointF[8];
+
+                        //Create 6 points
+                        for (int a = 0; a < 8; a++)
+                        {
+                            shape[a] = new PointF(
+                                xCenter + length * (float)Math.Cos(a * 45 * Math.PI / 180f),
+                                yCenter + length * (float)Math.Sin(a * 45 * Math.PI / 180f));
+                        }
+
+                        gs.DrawPolygon(Pens.Red, shape);
+
+                        break;
+                    case 11:// l-decagon
+
+                        length = Convert.ToInt32(textBox1.Text);
+
+                        shape = new PointF[10];
+
+                        //Create 6 points
+                        for (int a = 0; a < 10; a++)
+                        {
+                            shape[a] = new PointF(
+                                xCenter + length * (float)Math.Cos(a * 36 * Math.PI / 180f),
+                                yCenter + length * (float)Math.Sin(a * 36 * Math.PI / 180f));
+                        }
+
+                        gs.DrawPolygon(Pens.Red, shape);
+                        break;
+                    default:
+                        break;
                 }
             }
-            //
-            // open file in notepad
-            //
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
         }
 
-        private void load_Click(object sender, EventArgs e)
+        private void draw_Click(object sender, EventArgs e)
         {
-            //
-            // remove pervius loaded object
-            //
-            panel3.Controls.Clear();
-            int drawButtonPoint = 0;
-            //List<ShapeView> shapeViews = new List<ShapeView>();
-            //
-            // read json file selected and show desing according
-            //
-            string jsonString = string.Empty;
-            using (StreamReader sr = new StreamReader(dir + "\\" + shapeSel.Text + ".json"))
-            {
-                jsonString = sr.ReadToEnd();
-                //MessageBox.Show(jsonString);
-                sr.Close();
-            }
-            //shapeViews = JsonConvert.DeserializeObject<List<ShapeView>>(jsonString);
-            ShapeView shapeViews = JsonConvert.DeserializeObject<ShapeView>(jsonString);
-
-            shapeType = shapeViews.shapeType;
-            //
-            // adding label to tabpage1 according to json file
-            //
-            string[] labelText = new string[32];
-            for (int i = 0; i < shapeViews.labelCount; i++)
-            {
-                labelText[i] = shapeViews.labels[i].labelText;
-                Label label = new Label();
-                label.Location = new Point(10, (25 * (i+1)));
-                label.Size = new Size(80, 20);
-                label.Name = "label_" + (i + 1);
-                label.Text = labelText[i];
-                panel3.Controls.Add(label);
-            }
-            //
-            // adding textBox to tabpage1 according to json file
-            //
-            string[] textBoxName = new string[32];
-            for (int i = 0; i < shapeViews.textBoxCount; i++)
-            {
-                textBoxName[i] = shapeViews.textBoxs[i].textBoxName;
-                TextBox textbox = new TextBox();
-                textbox.Location = new Point(95, (25 * (i + 1)));
-                textbox.Size = new Size(80, 20);
-                textbox.Name = "txt_" + (i + 1);
-                panel3.Controls.Add(textbox);
-                drawButtonPoint = 25 * i;
-            }
-
-            //Create the dynamic Button to draw item in panel1
-            Button button = new Button();
-            button.Location = new System.Drawing.Point(95, drawButtonPoint + 50);
-            button.Size = new System.Drawing.Size(60, 20);
-            button.Name = "btnDraw_" + 2;
-            button.Text = "Draw";
-            button.Click += new System.EventHandler(btnDraw_Click);
-            panel3.Controls.Add(button);
-        }
-
-        private void btnDraw_Click(object sender, EventArgs e)
-        {
-            //
-            // update drawing
-            //
             panel1.Invalidate();
+        }
+
+        private void shapeSel_TextChanged(object sender, EventArgs e)
+        {
+            label3.Visible = true;
+            textBox1.Visible = true;
+            label4.Visible = true;
+            textBox2.Visible = true;
+            label5.Visible = true;
+            textBox3.Visible = true;
+
+            int shape = shapeSel.SelectedIndex;
+            switch (shape)
+            {
+                case 0://1
+                    label3.Text = "RADIUS";
+                    label4.Text = "LENGTH";
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    break;
+                case 1://2
+                    //MessageBox.Show(shapeSel.Text);
+                    label3.Text = "RADIUS";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Circumfernce of circle
+                    // C = 2 X PI X r | PI X D
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 X[angel] F500
+                     * G1 Z[Circumfernce] F800
+                     * G1 X0 F500
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 2://3
+                    label3.Text = "RADIUS 1";
+                    label4.Text = "RADIUS 2";
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Circumfernce of circle
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 X[angel1]  F500
+                     * G1 X[angel2] Z[Circumfernce * 1/4] F800
+                     * G1 X[angel1] Z[Circumfernce * 2/4] F800
+                     * G1 X[angel2] Z[Circumfernce * 3/4] F800
+                     * G1 X[angel1] Z[Circumfernce * 4/4] F800
+                     * G1 X0 F500
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 3://4:
+                    label3.Text = "RADIUS";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Circumfernce of circle
+                    // C = 2 X PI X r | PI X D
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 X[angel] F500
+                     * G1 Z[Circumfernce * 1/2] F800
+                     * G1 X0 F500
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 4://
+                    label3.Text = "RADIUS";
+                    label4.Text = "LENGTH";
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find total length of R-circle
+                    // Total Length = (2rPI) + (2 * side)
+                    /*
+                     * Gcode 
+                     * start form here
+                     * G18 G40 G49 G90 G94 G80
+                     * G1 Z[SIDE/2] F800
+                     * G1 X[ANGEL] F500
+                     * G1 Z[MOVE] F800
+                     * ; ADD SHOCK FOR STRAIT
+                     * G1 X[0] F500 
+                     * G1 Z[SIDE] F800
+                     * G1 X[ANGEL] F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[0] F500
+                     * G1 Z[SIDE/2] F500
+                     * ; ADD SHOCK FOR STRAIT
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 5://6
+                    label3.Text = "RADIUS";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    break;
+                case 6://7
+                    label3.Text = "LENGTH";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Triangle
+                    // Toltal Length = side * 3
+                    // reduies movement for fix size = Die_radius * PI * 2 / 3
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 7://8
+                    label3.Text = "LENGTH 1";
+                    label4.Text = "LENGTH 2";
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Squre  
+                    // Toltal Length = side * 4
+                    // reduies movement for fix size = Die_radius * PI * 2 / 4
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 8://9
+                    label3.Text = "LENGTH";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Squre  
+                    // Toltal Length = side * 5
+                    // reduies movement for fix size = Die_radius * PI * 2 / 5
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 9://10
+                    label3.Text = "LENGTH";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Squre  
+                    // Toltal Length = side * 6
+                    // reduies movement for fix size = Die_radius * PI * 2 / 6
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 10://11
+                    label3.Text = "LENGTH 1";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Squre  
+                    // Toltal Length = side * 6
+                    // reduies movement for fix size = Die_radius * PI * 2 / 6
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 11://12
+                    label3.Text = "LENGTH 1";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Squre  
+                    // Toltal Length = side * 8
+                    // reduies movement for fix size = Die_radius * PI * 2 / 8
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                case 12://13
+                    label3.Text = "LENGTH 1";
+                    //label4.Text = "LENGTH 2";
+                    label4.Visible = false;
+                    textBox2.Visible = false;
+                    label5.Visible = false;
+                    textBox3.Visible = false;
+                    // find Total Length of Squre  
+                    // Toltal Length = side * 10
+                    // reduies movement for fix size = Die_radius * PI * 2 / 10
+                    /*
+                     * Gcode
+                     * start from here
+                     * G18 G40 G49 G90 G94 G80
+                     * ; set angel for X
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * G1 X[angel] F500
+                     * G1 X0 F500
+                     * G1 Z[MOVE] F800
+                     * M2
+                     * M30
+                     */
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Save_click(object sender, EventArgs e)
+        {
+            float angel = new float();
+            float value_1 = new float();
+            float value_2 = new float();
+            float value_3 = new float();
+            float value_4 = new float();
+            float value_5 = new float();
+            float value_6 = new float();
+            float value_7 = new float();
+            try
+            {
+                if (textBox1.TextLength > 0)
+                {
+                     value_1 = Convert.ToInt32(textBox1.Text);
+                }
+                if (textBox2.TextLength > 0)
+                {
+                     value_2 = Convert.ToInt32(textBox2.Text);
+                }
+                if (textBox3.TextLength > 0)
+                {
+                     value_3 = Convert.ToInt32(textBox3.Text);
+                }
+                if (textBox4.TextLength > 0)
+                {
+                     value_4 = Convert.ToInt32(textBox4.Text);
+                }
+                {
+                    value_5 = 0;
+                }
+                if (textBox5.TextLength > 0)
+                {
+                    value_5 = Convert.ToInt32(textBox5.Text);
+                }
+                else
+                {
+                    value_5 = 0;
+                }
+                if (textBox6.TextLength > 0)
+                {
+                    value_6 = Convert.ToInt32(textBox6.Text);
+                }
+                else
+                {
+                    value_6 = 800;
+                }
+                if (textBox7.TextLength > 0)
+                {
+                    value_7 = Convert.ToInt32(textBox7.Text);
+                }
+                else
+                {
+                    value_7 = 300;
+                }
+
+                switch (shapeSel.SelectedIndex)
+                {
+                    case 0:
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 1:
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 2:
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 3:
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 4:
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 5:
+                        MessageBox.Show("Comming Soon");
+                        break;
+                    case 6:// triangle
+                        //MessageBox.Show("Comming Soon");
+
+                        /* 
+                         * save gcode
+                         * create txt file and save 
+                        */
+                        angel = (120 + value_5);
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        gcode += "G1 Z" + value_1 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        gcode += "G1 Z" + value_1 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        gcode += "G1 Z" + value_1 + " F" + value_6 + "\n";
+
+                        break;
+                    case 7:// squre
+                        
+                        angel = (90 + value_5);
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        //first move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // second move
+                        gcode += "G1 Z" + (value_2+value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // third move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fourth move
+                        gcode += "G1 Z" + (value_2 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // last move
+                        gcode += "G1 Z" + value_1/2 + " F" + value_6 + "\n";
+                        break;
+                    case 8:// pentagon
+
+                        angel = (72 + value_5);
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        //first move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // second move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // third move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fourth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fifth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // last move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n"; 
+                        break;
+                    case 9:// hexagone
+                        angel = (60 + value_5);
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        //first move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // second move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // third move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fourth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fifth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // sixth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // last move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n"; 
+                        break;
+                    case 10:// octagone
+
+                        angel = (45 + value_5);
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        //first move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // second move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // third move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fourth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fifth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // sixth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // seventh move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // eighth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // last move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n"; 
+                        break;
+                    case 11:// decagone
+                        angel = (36 + value_5);
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        //first move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // second move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // third move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fourth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fifth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // sixth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // seventh move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // eighth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // nineth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // tenth move
+                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // last move
+                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        break;
+
+                    default:
+                        break;
+                }
+
+                //
+                // generat gcode
+                //
+                //
+                // save gcode in tap file
+                //
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog
+                {
+                    RestoreDirectory = true,
+                    CheckFileExists = false,
+                    CheckPathExists = true,
+                    Filter = "TAP(*.tap)|*.tap"
+                };
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string path = saveFileDialog1.FileName;
+                    //MessageBox.Show(path);
+                    using (StreamWriter writer = new StreamWriter(path))
+                    {
+                        writer.WriteLine(gcode);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
     }
 }

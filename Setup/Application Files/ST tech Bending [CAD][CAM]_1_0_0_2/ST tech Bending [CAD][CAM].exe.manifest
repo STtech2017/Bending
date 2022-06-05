@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ST tech Bending [CAD][CAM].exe" version="1.0.0.2" publicKeyToken="c54b480c98974e2b" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ST tech Bending [CAD][CAM]" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ST tech Bending [CAD][CAM].exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="701992">
+      <assemblyIdentity name="Newtonsoft.Json" version="13.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>tiSUnfiw46YVP9+3MKfG9JkLZZLuDZIuF4hDPSdmEPM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ST tech Bending [CAD][CAM].exe" size="193520">
+      <assemblyIdentity name="ST tech Bending [CAD][CAM]" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>tMfVYo8uTH3yTaAEQjDzJILEyz/hs+5BMJeExT23zYM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ST tech Bending [CAD][CAM].exe.config" size="187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+CM46OnHRrXZXNLMx7+U3V3iubiYL//d8hGOR13lDhU=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=PARTHTHESIYA\RoboEndure" issuerKeyHash="999541e9e981ff4765816fe1f36497043eb0a571" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>GQef1PmLBXBuptF/TAAhTN1hvtW6kYQH2trgQMw96EM=</DigestValue></Reference></SignedInfo><SignatureValue>aeNFMX2KNdKKN6zwn0f8350wHdVe0DBgEO6shRINpwM5zoT9aTxyuWZJLVPfLhKeafuR6Tad6aYSqgKYOfrbdznyKi++MCg4jr05blI+YDOd/nHtKvZztKrn+2E02KHobpKKl3kz48GMSEk3bQ6J2Y6hWmacBK7aokENIXHLLss=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>zkHTU0ghGNMN6SlnmoNwUAaMV3OKWHITJuC6zh6D33J/2Ou2gQH6wXvAVp2go2PaTm1XjyJTOUqRmrb7MyQP2Jmwl/5huYWmO894W2fhUIZdD2rT7q8P71hAqXMMTpOiLJsrJjmWxM+npZtLfLDt+2Ui5Hida0FhlyMB+WFwLQk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="43e83dcc40e0dada078491bad5be61dd4c21004c7fd1a66e70058bf9d49f0719" Description="" Url=""><as:assemblyIdentity name="ST tech Bending [CAD][CAM].exe" version="1.0.0.2" publicKeyToken="c54b480c98974e2b" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=PARTHTHESIYA\RoboEndure</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>qPJLVqfRkwcKtvaFJixjhuOXsxfoACTtGLEJcVASOMY=</DigestValue></Reference></SignedInfo><SignatureValue>Y/KUuvftaURej1IQAQzlq0hU/9N98KqqFIgpSnCfAWh0nlnIEJi19BDeHSkb9tDzPbXxjzANQR1Oz7ok/3CNfXp+jX7B/F4O5CGM8zbC3EdWKt1ZyIsRny8xLzBKBfd55r4g+U4MrTvSqW2/Cmg+ghKljk/A5r4NUowwFCo5voU=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>zkHTU0ghGNMN6SlnmoNwUAaMV3OKWHITJuC6zh6D33J/2Ou2gQH6wXvAVp2go2PaTm1XjyJTOUqRmrb7MyQP2Jmwl/5huYWmO894W2fhUIZdD2rT7q8P71hAqXMMTpOiLJsrJjmWxM+npZtLfLDt+2Ui5Hida0FhlyMB+WFwLQk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQUEqHaJLVlbhPpnlntiL1YzANBgkqhkiG9w0BAQsFADA5MTcwNQYDVQQDHi4AUABBAFIAVABIAFQASABFAFMASQBZAEEAXABSAG8AYgBvAEUAbgBkAHUAcgBlMB4XDTIyMDMyNDEwNDY1NloXDTIzMDMyNDE2NDY1NlowOTE3MDUGA1UEAx4uAFAAQQBSAFQASABUAEgARQBTAEkAWQBBAFwAUgBvAGIAbwBFAG4AZAB1AHIAZTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzkHTU0ghGNMN6SlnmoNwUAaMV3OKWHITJuC6zh6D33J/2Ou2gQH6wXvAVp2go2PaTm1XjyJTOUqRmrb7MyQP2Jmwl/5huYWmO894W2fhUIZdD2rT7q8P71hAqXMMTpOiLJsrJjmWxM+npZtLfLDt+2Ui5Hida0FhlyMB+WFwLQkCAwEAATANBgkqhkiG9w0BAQsFAAOBgQA53SV1UsW70mMt+WVLJLaL2uU4hLF29ux4gIBhMw5apTFGAM6Bw/h+9wf1dH6piczqufCV2GSuJguZF1kN7l804Eps1m2PqHN90HvBFetJu6PGFQZHc7YELD2RYt7pl1jUhFI6AugoxF5oq2+FERjTBxQSHRbekBgl1I4OrY0tHA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
