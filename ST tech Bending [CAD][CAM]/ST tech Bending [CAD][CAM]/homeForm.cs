@@ -618,6 +618,7 @@ namespace ST_tech_Bending__CAD__CAM_
         private void Save_click(object sender, EventArgs e)
         {
             float angel = new float();
+            float move_value = new float();
             float value_1 = new float();
             float value_2 = new float();
             float value_3 = new float();
@@ -660,7 +661,7 @@ namespace ST_tech_Bending__CAD__CAM_
                 }
                 else
                 {
-                    value_6 = 800;
+                    value_6 = 500;
                 }
                 if (textBox7.TextLength > 0)
                 {
@@ -699,183 +700,233 @@ namespace ST_tech_Bending__CAD__CAM_
                          * create txt file and save 
                         */
                         angel = (120 + value_5);
+                        
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value = 0;
+                        move_value = value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
-                        gcode += "G1 Z" + value_1 + " F" + value_6 + "\n";
+
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
-                        gcode += "G1 Z" + value_1 + " F" + value_6 + "\n";
+
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
-                        gcode += "G1 Z" + value_1 + " F" + value_6 + "\n";
+
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
 
                         break;
                     case 7:// squre
-                        
                         angel = (90 + value_5);
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
                         //first move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value = value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // second move
-                        gcode += "G1 Z" + (value_2+value_4) + " F" + value_6 + "\n";
+                        move_value += value_2 + value_4;
+                        gcode += "G1 Z" + move_value  + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // third move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fourth move
-                        gcode += "G1 Z" + (value_2 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_2 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // last move
-                        gcode += "G1 Z" + value_1/2 + " F" + value_6 + "\n";
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         break;
                     case 8:// pentagon
 
                         angel = (72 + value_5);
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
                         //first move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value = 0;
+                        move_value = value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // second move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // third move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fourth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n"; 
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fifth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // last move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n"; 
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         break;
                     case 9:// hexagone
                         angel = (60 + value_5);
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        move_value = 0;
                         //first move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value = value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // second move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // third move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fourth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fifth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // sixth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // last move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n"; 
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         break;
                     case 10:// octagone
 
                         angel = (45 + value_5);
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        move_value = 0;
                         //first move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // second move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // third move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fourth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fifth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // sixth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // seventh move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // eighth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // last move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n"; 
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         break;
                     case 11:// decagone
                         angel = (36 + value_5);
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        move_value = 0;
                         //first move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // second move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // third move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fourth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // fifth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // sixth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // seventh move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // eighth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // nineth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // tenth move
-                        gcode += "G1 Z" + (value_1 + value_4) + " F" + value_6 + "\n";
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
                         // last move
-                        gcode += "G1 Z" + value_1 / 2 + " F" + value_6 + "\n";
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         break;
 
                     default:
