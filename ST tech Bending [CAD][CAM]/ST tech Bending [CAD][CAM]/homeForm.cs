@@ -246,6 +246,8 @@ namespace ST_tech_Bending__CAD__CAM_
             textBox2.Visible = true;
             label5.Visible = true;
             textBox3.Visible = true;
+            label10.Visible = true;
+            textBox8.Visible = true;
 
             int shape = shapeSel.SelectedIndex;
             switch (shape)
@@ -255,14 +257,17 @@ namespace ST_tech_Bending__CAD__CAM_
                     label4.Text = "LENGTH";
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     break;
                 case 1://2
                     //MessageBox.Show(shapeSel.Text);
                     label3.Text = "RADIUS";
-                    label4.Visible = false;
-                    textBox2.Visible = false;
+                    label4.Text = "ANGEL";
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Circumfernce of circle
                     // C = 2 X PI X r | PI X D
                     /*
@@ -280,8 +285,8 @@ namespace ST_tech_Bending__CAD__CAM_
                 case 2://3
                     label3.Text = "RADIUS 1";
                     label4.Text = "RADIUS 2";
-                    label5.Visible = false;
-                    textBox3.Visible = false;
+                    label5.Text = "ANGEL 1";
+                    label10.Text = "ANGEL 2";
                     // find Circumfernce of circle
                     /*
                      * Gcode
@@ -304,6 +309,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Circumfernce of circle
                     // C = 2 X PI X r | PI X D
                     /*
@@ -323,6 +330,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     label4.Text = "LENGTH";
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find total length of R-circle
                     // Total Length = (2rPI) + (2 * side)
                     /*
@@ -350,6 +359,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     break;
                 case 6://7
                     label3.Text = "LENGTH";
@@ -357,6 +368,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Triangle
                     // Toltal Length = side * 3
                     // reduies movement for fix size = Die_radius * PI * 2 / 3
@@ -384,6 +397,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     label4.Text = "LENGTH 2";
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 4
                     // reduies movement for fix size = Die_radius * PI * 2 / 4
@@ -415,6 +430,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 5
                     // reduies movement for fix size = Die_radius * PI * 2 / 5
@@ -449,6 +466,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 6
                     // reduies movement for fix size = Die_radius * PI * 2 / 6
@@ -486,6 +505,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 6
                     // reduies movement for fix size = Die_radius * PI * 2 / 6
@@ -523,6 +544,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 8
                     // reduies movement for fix size = Die_radius * PI * 2 / 8
@@ -567,6 +590,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox3.Visible = false;
+                    label10.Visible = false;
+                    textBox8.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 10
                     // reduies movement for fix size = Die_radius * PI * 2 / 10
@@ -626,6 +651,7 @@ namespace ST_tech_Bending__CAD__CAM_
             float value_5 = new float();
             float value_6 = new float();
             float value_7 = new float();
+            float value_8 = new float();
             try
             {
                 if (textBox1.TextLength > 0)
@@ -671,6 +697,14 @@ namespace ST_tech_Bending__CAD__CAM_
                 {
                     value_7 = 300;
                 }
+                if (textBox8.TextLength > 0)
+                {
+                    value_8 = Convert.ToInt32(textBox8.Text);
+                }
+                else
+                {
+                    value_8 = 0;
+                }
 
                 switch (shapeSel.SelectedIndex)
                 {
@@ -678,10 +712,36 @@ namespace ST_tech_Bending__CAD__CAM_
                         MessageBox.Show("Comming Soon");
                         break;
                     case 1:
-                        MessageBox.Show("Comming Soon");
+                        //MessageBox.Show("Comming Soon"); 
+                        
+                        angel = value_2;
+
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        move_value = 0;
+                        move_value = (float)(value_1 * Math.PI * 2);
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 2:
-                        MessageBox.Show("Comming Soon");
+                        //MessageBox.Show("Comming Soon");
+
+                        //MessageBox.Show("Comming Soon"); 
+
+                        var angel1 = value_3;
+                        var angel2 = value_8;
+
+                        // calulation
+                        move_value = 0;
+                        move_value = (float)(Math.PI * ((3 * (value_1 + value_2)) - Math.Sqrt((3 * value_1 + value_2) * (3 * value_2 + value_1))));
+
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        gcode += "G1 X" + angel1 + " Z" + (move_value / 4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel2 + " Z" + (move_value / 2) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel1 + " Z" + (move_value * 3/4) + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel2 + " Z" + (move_value) + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n"; 
                         break;
                     case 3:
                         MessageBox.Show("Comming Soon");
@@ -720,6 +780,7 @@ namespace ST_tech_Bending__CAD__CAM_
 
                         move_value += value_1 / 2;
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
 
                         break;
                     case 7:// squre
@@ -748,6 +809,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         // last move
                         move_value += value_1 / 2;
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 8:// pentagon
 
@@ -782,6 +844,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         // last move
                         move_value += value_1 / 2;
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 9:// hexagone
                         angel = (60 + value_5);
@@ -820,6 +883,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         // last move
                         move_value += value_1 / 2;
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 10:// octagone
 
@@ -869,6 +933,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         // last move
                         move_value += value_1 / 2;
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 11:// decagone
                         angel = (36 + value_5);
@@ -927,6 +992,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         // last move
                         move_value += value_1 / 2;
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
 
                     default:
