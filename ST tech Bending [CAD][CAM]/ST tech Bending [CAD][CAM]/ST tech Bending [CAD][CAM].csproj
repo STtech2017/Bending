@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>P:\SuzanNaturalTech\Software\Bending\Setup\</PublishUrl>
-    <Install>true</Install>
+    <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -25,7 +25,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>https://github.com/STtech2017/Bending/tree/main/Setup/</UpdateUrl>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
