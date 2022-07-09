@@ -737,6 +737,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         move_value = (float)(Math.PI * ((3 * (value_1 + value_2)) - Math.Sqrt((3 * value_1 + value_2) * (3 * value_2 + value_1))));
 
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        gcode += "G1 X" + angel1 + "F" + value_6 + "\n";
                         gcode += "G1 X" + angel1 + " Z" + (move_value / 4) + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel2 + " Z" + (move_value / 2) + " F" + value_6 + "\n";
                         gcode += "G1 X" + angel1 + " Z" + (move_value * 3/4) + " F" + value_6 + "\n";
