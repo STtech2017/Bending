@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ST tech Bending [CAD][CAM].exe" version="1.1.0.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
+  <asmv1:assemblyIdentity name="ST tech Bending [CAD][CAM].exe" version="1.1.0.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="ST tech Bending [CAD][CAM]" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
@@ -54,14 +54,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ST tech Bending [CAD][CAM].exe" size="194544">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ST tech Bending [CAD][CAM].exe" size="222192">
       <assemblyIdentity name="ST tech Bending [CAD][CAM]" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nvr82fI3JeyPr6w1HI4dt6T7nfI1mIbrcsnczyvrnJU=</dsig:DigestValue>
+        <dsig:DigestValue>nC3+AkmP3kAx1faivhQeSfZ3yKhG2YauXAFJzoZ1PII=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="en-IN\ST tech Bending [CAD][CAM].resources.dll" size="8192">
+      <assemblyIdentity name="ST tech Bending [CAD][CAM].resources" version="1.0.0.0" language="en-IN" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>lROc2alkGPwfkKXo91SjfqbD1fg5C2dKUxpwkyPkv88=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

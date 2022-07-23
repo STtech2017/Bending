@@ -241,6 +241,8 @@ namespace ST_tech_Bending__CAD__CAM_
             textBox3.Visible = true;
             label10.Visible = true;
             textBox8.Visible = true;
+            label11.Visible = true;
+            textBox9.Visible = true;
 
             int shape = shapeSel.SelectedIndex;
             switch (shape)
@@ -251,15 +253,19 @@ namespace ST_tech_Bending__CAD__CAM_
                     label5.Text = "RADIUS ANGEL";
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     break;
                 case 1://2
                     //MessageBox.Show(shapeSel.Text);
                     label3.Text = "RADIUS";
-                    label5.Text = "RADIUS ANGEL";
+                    label4.Text = "RADIUS ANGEL";
                     label5.Visible = false;
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Circumfernce of circle
                     // C = 2 X PI X r | PI X D
                     /*
@@ -278,7 +284,9 @@ namespace ST_tech_Bending__CAD__CAM_
                     label3.Text = "RADIUS 1";
                     label4.Text = "RADIUS 2";
                     label5.Text = "RADIUS 1 ANGEL 1";
-                    label5.Text = "RADIUS 2 ANGEL 2";
+                    label10.Text = "RADIUS 2 ANGEL 2";
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Circumfernce of circle
                     /*
                      * Gcode
@@ -297,11 +305,13 @@ namespace ST_tech_Bending__CAD__CAM_
                     break;
                 case 3://4:
                     label3.Text = "RADIUS";
-                    label5.Text = "RADIUS ANGEL";
+                    label4.Text = "RADIUS ANGEL";
                     label5.Visible = false;
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Circumfernce of circle
                     // C = 2 X PI X r | PI X D
                     /*
@@ -350,6 +360,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     break;
                 case 6://7
                     label3.Text = "LENGTH";
@@ -359,6 +371,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Triangle
                     // Toltal Length = side * 3
                     // reduies movement for fix size = Die_radius * PI * 2 / 3
@@ -388,6 +402,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 4
                     // reduies movement for fix size = Die_radius * PI * 2 / 4
@@ -421,6 +437,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 5
                     // reduies movement for fix size = Die_radius * PI * 2 / 5
@@ -457,6 +475,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 6
                     // reduies movement for fix size = Die_radius * PI * 2 / 6
@@ -496,6 +516,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 6
                     // reduies movement for fix size = Die_radius * PI * 2 / 6
@@ -535,6 +557,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 8
                     // reduies movement for fix size = Die_radius * PI * 2 / 8
@@ -581,6 +605,8 @@ namespace ST_tech_Bending__CAD__CAM_
                     textBox3.Visible = false;
                     label10.Visible = false;
                     textBox8.Visible = false;
+                    label11.Visible = false;
+                    textBox9.Visible = false;
                     // find Total Length of Squre  
                     // Toltal Length = side * 10
                     // reduies movement for fix size = Die_radius * PI * 2 / 10
@@ -642,6 +668,7 @@ namespace ST_tech_Bending__CAD__CAM_
             double value_6 = new double();
             double value_7 = new double();
             double value_8 = new double();
+            double value_9 = new double();
             try
             {
                 if (textBox1.TextLength > 0)
@@ -695,10 +722,18 @@ namespace ST_tech_Bending__CAD__CAM_
                 {
                     value_8 = 0;
                 }
+                if (textBox9.TextLength > 0)
+                {
+                    value_9 = Convert.ToDouble(textBox9.Text);
+                }
+                else
+                {
+                    value_9 = 0;
+                }
 
                 switch (shapeSel.SelectedIndex)
                 {
-                    case 0:
+                    case 0://window
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
                         angel = (90 + value_5);
                         angel_2 = value_3;
@@ -727,9 +762,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "M2\nM30\n";
                         break;
-                    case 1:
-                        //MessageBox.Show("Comming Soon"); 
-                        
+                    case 1://round
                         angel = value_2;
 
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
@@ -740,11 +773,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         gcode += "G1 X0 " + value_6 + "\n";
                         gcode += "M2\nM30\n";
                         break;
-                    case 2:
-                        //MessageBox.Show("Comming Soon");
-
-                        //MessageBox.Show("Comming Soon"); 
-
+                    case 2://elipce
                         var angel1 = value_3;
                         var angel2 = value_8;
 
@@ -760,18 +789,72 @@ namespace ST_tech_Bending__CAD__CAM_
                         gcode += "G1 X" + angel2 + " Z" + (move_value) + " F" + value_6 + "\n";
                         gcode += "M2\nM30\n"; 
                         break;
-                    case 3:
-                        MessageBox.Show("Comming Soon");
+                    case 3://semicircle
+                        angel = value_2;
+
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        move_value = 0;
+                        move_value = ((value_1 * Math.PI * 2)/2);
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
-                    case 4:
-                        MessageBox.Show("Comming Soon");
+                    case 4://r-circle
+                        angel = value_3;
+                       
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+
+                        move_value = 0;
+                        move_value = value_2 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+
+                        move_value += ((value_1 * Math.PI * 2) / 2) + value_4;
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+
+                        move_value = value_2 + value_9;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+
+                        move_value += ((value_1 * Math.PI * 2) / 2) + value_4;
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+
+                        move_value = value_2 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
-                    case 5:
-                        MessageBox.Show("Comming Soon");
+                    case 5:// triangle
+                        /* 
+                         * save gcode
+                         * create txt file and save 
+                        */
+                        angel = (120 + value_5);
+
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        move_value = 0;
+                        move_value = value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+
+                        move_value += value_1 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 6:// triangle
-                        //MessageBox.Show("Comming Soon");
-
                         /* 
                          * save gcode
                          * create txt file and save 
@@ -1043,7 +1126,6 @@ namespace ST_tech_Bending__CAD__CAM_
             {
 
             }
-
         }
     }
 }

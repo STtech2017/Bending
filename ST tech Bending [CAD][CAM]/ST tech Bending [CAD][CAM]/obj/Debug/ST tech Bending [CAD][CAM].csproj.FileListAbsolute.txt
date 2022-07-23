@@ -16,3 +16,6 @@ P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending 
 P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\ST tech Bending [CAD][CAM].application
 P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].exe.manifest
 P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST tech Bending [CAD][CAM].application
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\bin\Debug\en-IN\ST tech Bending [CAD][CAM].resources.dll
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\ST_tech_Bending__CAD__CAM_.homeForm.en-IN.resources
+P:\SuzanNaturalTech\Software\Bending\ST tech Bending [CAD][CAM]\ST tech Bending [CAD][CAM]\obj\Debug\en-IN\ST tech Bending [CAD][CAM].resources.dll
