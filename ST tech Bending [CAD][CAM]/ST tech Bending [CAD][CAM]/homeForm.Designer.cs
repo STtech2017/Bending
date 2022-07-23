@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -40,7 +42,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -53,10 +54,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -107,12 +107,28 @@
             this.splitContainer1.SplitterDistance = 335;
             this.splitContainer1.TabIndex = 3;
             // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(104, 195);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(100, 22);
+            this.textBox8.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 198);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 16);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "label10";
+            // 
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(130, 380);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(100, 22);
-            this.textBox7.TabIndex = 19;
+            this.textBox7.TabIndex = 7;
             // 
             // label9
             // 
@@ -129,7 +145,7 @@
             this.textBox6.Location = new System.Drawing.Point(131, 407);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 22);
-            this.textBox6.TabIndex = 17;
+            this.textBox6.TabIndex = 8;
             // 
             // label8
             // 
@@ -146,7 +162,7 @@
             this.button1.Location = new System.Drawing.Point(227, 477);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 40);
-            this.button1.TabIndex = 15;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Save Gcode";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Save_click);
@@ -156,14 +172,14 @@
             this.textBox4.Location = new System.Drawing.Point(130, 295);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 22);
-            this.textBox4.TabIndex = 14;
+            this.textBox4.TabIndex = 5;
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(130, 323);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 22);
-            this.textBox5.TabIndex = 13;
+            this.textBox5.TabIndex = 6;
             // 
             // label6
             // 
@@ -183,36 +199,26 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Angel Comp";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 477);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Length : 0";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(104, 158);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 10;
+            this.textBox3.TabIndex = 3;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(104, 123);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 9;
+            this.textBox2.TabIndex = 2;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(104, 91);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 8;
+            this.textBox1.TabIndex = 1;
             // 
             // label5
             // 
@@ -246,7 +252,7 @@
             this.draw.Location = new System.Drawing.Point(3, 477);
             this.draw.Name = "draw";
             this.draw.Size = new System.Drawing.Size(105, 40);
-            this.draw.TabIndex = 2;
+            this.draw.TabIndex = 9;
             this.draw.Text = "Draw";
             this.draw.UseVisualStyleBackColor = true;
             this.draw.Click += new System.EventHandler(this.draw_Click);
@@ -269,7 +275,7 @@
             "Elipse",
             "Semicircle",
             "R-circle",
-            "Trapezoid",
+            "Triangle",
             "Triangle",
             "Squre",
             "Pentagon",
@@ -314,25 +320,19 @@
             this.vScrollBar1.Size = new System.Drawing.Size(21, 521);
             this.vScrollBar1.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 477);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Length : 0";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(104, 195);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 22);
-            this.textBox8.TabIndex = 21;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 198);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 16);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "label10";
             // 
             // homeForm
             // 

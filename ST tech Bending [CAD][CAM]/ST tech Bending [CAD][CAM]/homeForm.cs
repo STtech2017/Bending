@@ -86,59 +86,52 @@ namespace ST_tech_Bending__CAD__CAM_
                 switch (shapeSel.SelectedIndex)
                 {
                     case 0:// window
-                        /*
-                        radius = Convert.ToInt32(textBox1.Text);
-                        length = Convert.ToInt32(textBox2.Text);
+                        radius = (float)Convert.ToDouble(textBox1.Text);//float e = (float)Convert.ToDouble(e_textBox.Text);
+                        length = (float)Convert.ToDouble(textBox2.Text);
                         dia = radius * 2;
 
                         //draw arc
-                        gs.DrawEllipse(blackpen, (xCenter - radius), (yCenter - radius), dia, dia);
-                        // draw line 1
-                        gs.DrawLine(redpen, xCenter, yCenter, yTotal, yCenter);
-                        //draw line 2
-                        gs.DrawLine(redpen, xCenter, yCenter, yTotal, yCenter);
-                        //draw line 3
-                        gs.DrawLine(redpen, xCenter, yCenter, yTotal, yCenter);
 
-                        label2.Text = "Length : " + ((dia * Math.PI) / 2 + (length * 2) + dia) + "mm";
-                        */
-                        MessageBox.Show("Comming Soon");
-                        break;
+                        // draw line 1
+                        gs.DrawRectangle(blackpen, (xCenter - radius),(float)(yCenter - length*0.25) , dia, length);
+                        gs.DrawArc(blackpen, (xCenter - radius), (float)(yCenter - length*0.25 - radius), dia, dia, 0, -180);
+
+                        label2.Text = "Length : " + (int)((dia * Math.PI) / 2 + (length * 2) + dia) + "mm";
+                        
+                         break;
                     case 1:// circle
-                        radius = Convert.ToInt32(textBox1.Text);
+                        radius = (float)Convert.ToDouble(textBox1.Text);
                         dia = radius * 2;
 
                         gs.DrawEllipse(blackpen, (xCenter - radius), (yCenter - radius), dia, dia);
-                        label2.Text = "Length : " + (dia * Math.PI) + "mm";
+                        label2.Text = "Length : " + (int)(dia * Math.PI) + "mm";
                         break;
                     case 2:// eclipse
-                        radius1 = Convert.ToInt32(textBox1.Text);
-                        radius2 = Convert.ToInt32(textBox2.Text);
+                        radius1 = (float)Convert.ToDouble(textBox1.Text);
+                        radius2 = (float)Convert.ToDouble(textBox2.Text);
 
                         gs.DrawEllipse(blackpen, (xCenter - radius1), (yCenter - radius2), radius1 * 2, radius2 * 2);
                         break;
                     case 3:// semicircle
-                           //draw arc
-                        /*
-                        gs.DrawArc(blackpen, 100,100,100,100, 180, 180);//)
-                        gs.DrawLine(blackpen, 100, 150, 200, 150);
-                        */
-                        MessageBox.Show("Comming Soon");
+                        radius = (float)Convert.ToDouble(textBox1.Text);
+                        dia = radius * 2;
+                        gs.DrawArc(blackpen, (xCenter - radius), (float)(yCenter - radius), dia, dia, 0, -180);
+                       
                         break;
                     case 4:// r-circle
-                        /*
-                        gs.DrawArc(blackpen, 100, 100, 100, 100, 90, 180);// (
-                        gs.DrawArc(blackpen, 300, 100, 100, 100, 90, -180);// )
-                        gs.DrawLine(blackpen, 150, 100, 350, 100);// -
-                        gs.DrawLine(blackpen, 150, 200, 350, 200);// -
-                        */
-                        MessageBox.Show("Comming Soon");
+                        radius = (float)Convert.ToDouble(textBox1.Text);
+                        length = (float)Convert.ToDouble(textBox2.Text);
+                        dia = radius * 2;
+
+                        gs.DrawRectangle(blackpen, (xCenter - length/2), (float)(yCenter - radius), length, dia);
+                        gs.DrawArc(blackpen, (float)(xCenter - length * 0.5 - radius), (float)(yCenter - radius), dia, dia, 90, 180);
+                        gs.DrawArc(blackpen, (float)(xCenter + length * 0.5 - radius), (float)(yCenter - radius), dia, dia, 90, -180);
                         break;
                     case 5:// trapezoid
                         MessageBox.Show("Comming Soon");
                         break;
                     case 6:// triangle
-                        length = Convert.ToInt32(textBox1.Text);
+                        length = (float)Convert.ToDouble(textBox1.Text);
 
                         var shape = new PointF[3];
 
@@ -154,13 +147,13 @@ namespace ST_tech_Bending__CAD__CAM_
 
                         break;
                     case 7:// squre
-                        length1 = Convert.ToInt32(textBox1.Text);
-                        length2 = Convert.ToInt32(textBox2.Text);
+                        length1 = (float)Convert.ToDouble(textBox1.Text);
+                        length2 = (float)Convert.ToDouble(textBox2.Text);
                         gs.DrawRectangle(blackpen, (xCenter - length1 / 2), (yCenter - length2 / 2), length1, length2);
                         break;
                     case 8:// pentagon  
 
-                        length = Convert.ToInt32(textBox1.Text);
+                        length = (float)Convert.ToDouble(textBox1.Text);
 
                         shape = new PointF[5];
 
@@ -176,7 +169,7 @@ namespace ST_tech_Bending__CAD__CAM_
 
                         break;
                     case 9:// hexago
-                        length = Convert.ToInt32(textBox1.Text);
+                        length = (float)Convert.ToDouble(textBox1.Text);
 
                         shape = new PointF[6];
 
@@ -192,7 +185,7 @@ namespace ST_tech_Bending__CAD__CAM_
 
                         break;
                     case 10:// l-octagon
-                        length = Convert.ToInt32(textBox1.Text);
+                        length = (float)Convert.ToDouble(textBox1.Text);
 
                         shape = new PointF[8];
 
@@ -209,7 +202,7 @@ namespace ST_tech_Bending__CAD__CAM_
                         break;
                     case 11:// l-decagon
 
-                        length = Convert.ToInt32(textBox1.Text);
+                        length = (float)Convert.ToDouble(textBox1.Text);
 
                         shape = new PointF[10];
 
@@ -255,15 +248,14 @@ namespace ST_tech_Bending__CAD__CAM_
                 case 0://1
                     label3.Text = "RADIUS";
                     label4.Text = "LENGTH";
-                    label5.Visible = false;
-                    textBox3.Visible = false;
+                    label5.Text = "RADIUS ANGEL";
                     label10.Visible = false;
                     textBox8.Visible = false;
                     break;
                 case 1://2
                     //MessageBox.Show(shapeSel.Text);
                     label3.Text = "RADIUS";
-                    label4.Text = "ANGEL";
+                    label5.Text = "RADIUS ANGEL";
                     label5.Visible = false;
                     textBox3.Visible = false;
                     label10.Visible = false;
@@ -285,8 +277,8 @@ namespace ST_tech_Bending__CAD__CAM_
                 case 2://3
                     label3.Text = "RADIUS 1";
                     label4.Text = "RADIUS 2";
-                    label5.Text = "ANGEL 1";
-                    label10.Text = "ANGEL 2";
+                    label5.Text = "RADIUS 1 ANGEL 1";
+                    label5.Text = "RADIUS 2 ANGEL 2";
                     // find Circumfernce of circle
                     /*
                      * Gcode
@@ -305,8 +297,7 @@ namespace ST_tech_Bending__CAD__CAM_
                     break;
                 case 3://4:
                     label3.Text = "RADIUS";
-                    label4.Visible = false;
-                    textBox2.Visible = false;
+                    label5.Text = "RADIUS ANGEL";
                     label5.Visible = false;
                     textBox3.Visible = false;
                     label10.Visible = false;
@@ -328,8 +319,7 @@ namespace ST_tech_Bending__CAD__CAM_
                 case 4://
                     label3.Text = "RADIUS";
                     label4.Text = "LENGTH";
-                    label5.Visible = false;
-                    textBox3.Visible = false;
+                    label5.Text = "RADIUS ANGEL";
                     label10.Visible = false;
                     textBox8.Visible = false;
                     // find total length of R-circle
@@ -355,8 +345,7 @@ namespace ST_tech_Bending__CAD__CAM_
                     break;
                 case 5://6
                     label3.Text = "RADIUS";
-                    label4.Visible = false;
-                    textBox2.Visible = false;
+                    label5.Text = "RADIUS ANGEL";
                     label5.Visible = false;
                     textBox3.Visible = false;
                     label10.Visible = false;
@@ -642,40 +631,41 @@ namespace ST_tech_Bending__CAD__CAM_
 
         private void Save_click(object sender, EventArgs e)
         {
-            float angel = new float();
-            float move_value = new float();
-            float value_1 = new float();
-            float value_2 = new float();
-            float value_3 = new float();
-            float value_4 = new float();
-            float value_5 = new float();
-            float value_6 = new float();
-            float value_7 = new float();
-            float value_8 = new float();
+            double angel = new double();
+            double angel_2 = new double();
+            double move_value = new double();
+            double value_1 = new double();
+            double value_2 = new double();
+            double value_3 = new double();
+            double value_4 = new double();
+            double value_5 = new double();
+            double value_6 = new double();
+            double value_7 = new double();
+            double value_8 = new double();
             try
             {
                 if (textBox1.TextLength > 0)
                 {
-                     value_1 = Convert.ToInt32(textBox1.Text);
+                     value_1 = Convert.ToDouble(textBox1.Text);
                 }
                 if (textBox2.TextLength > 0)
                 {
-                     value_2 = Convert.ToInt32(textBox2.Text);
+                     value_2 = Convert.ToDouble(textBox2.Text);
                 }
                 if (textBox3.TextLength > 0)
                 {
-                     value_3 = Convert.ToInt32(textBox3.Text);
+                     value_3 = Convert.ToDouble(textBox3.Text);
                 }
                 if (textBox4.TextLength > 0)
                 {
-                     value_4 = Convert.ToInt32(textBox4.Text);
+                     value_4 = Convert.ToDouble(textBox4.Text);
                 }
                 {
                     value_5 = 0;
                 }
                 if (textBox5.TextLength > 0)
                 {
-                    value_5 = Convert.ToInt32(textBox5.Text);
+                    value_5 = Convert.ToDouble(textBox5.Text);
                 }
                 else
                 {
@@ -683,7 +673,7 @@ namespace ST_tech_Bending__CAD__CAM_
                 }
                 if (textBox6.TextLength > 0)
                 {
-                    value_6 = Convert.ToInt32(textBox6.Text);
+                    value_6 = Convert.ToDouble(textBox6.Text);
                 }
                 else
                 {
@@ -691,7 +681,7 @@ namespace ST_tech_Bending__CAD__CAM_
                 }
                 if (textBox7.TextLength > 0)
                 {
-                    value_7 = Convert.ToInt32(textBox7.Text);
+                    value_7 = Convert.ToDouble(textBox7.Text);
                 }
                 else
                 {
@@ -699,7 +689,7 @@ namespace ST_tech_Bending__CAD__CAM_
                 }
                 if (textBox8.TextLength > 0)
                 {
-                    value_8 = Convert.ToInt32(textBox8.Text);
+                    value_8 = Convert.ToDouble(textBox8.Text);
                 }
                 else
                 {
@@ -709,7 +699,33 @@ namespace ST_tech_Bending__CAD__CAM_
                 switch (shapeSel.SelectedIndex)
                 {
                     case 0:
-                        MessageBox.Show("Comming Soon");
+                        gcode = "G18 G40 G49 G90 G94 G80 \n";
+                        angel = (90 + value_5);
+                        angel_2 = value_3;
+                        //first move
+                        move_value = value_1;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // second move
+                        move_value += value_2 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // third move
+                        move_value += (double)(value_1 * Math.PI * 2);
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // fourth move
+                        move_value += value_2 + value_4;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "G1 X" + angel + " F" + value_7 + "\n";
+                        gcode += "G1 X0 " + value_6 + "\n";
+                        // last move
+                        move_value += value_1 / 2;
+                        gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
+                        gcode += "M2\nM30\n";
                         break;
                     case 1:
                         //MessageBox.Show("Comming Soon"); 
@@ -718,7 +734,7 @@ namespace ST_tech_Bending__CAD__CAM_
 
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
                         move_value = 0;
-                        move_value = (float)(value_1 * Math.PI * 2);
+                        move_value = (double)(value_1 * Math.PI * 2);
                         gcode += "G1 X" + angel + " F" + value_7 + "\n";
                         gcode += "G1 Z" + move_value + " F" + value_6 + "\n";
                         gcode += "G1 X0 " + value_6 + "\n";
@@ -734,7 +750,7 @@ namespace ST_tech_Bending__CAD__CAM_
 
                         // calulation
                         move_value = 0;
-                        move_value = (float)(Math.PI * ((3 * (value_1 + value_2)) - Math.Sqrt((3 * value_1 + value_2) * (3 * value_2 + value_1))));
+                        move_value = (double)(Math.PI * ((3 * (value_1 + value_2)) - Math.Sqrt((3 * value_1 + value_2) * (3 * value_2 + value_1))));
 
                         gcode = "G18 G40 G49 G90 G94 G80 \n";
                         gcode += "G1 X" + angel1 + "F" + value_6 + "\n";
