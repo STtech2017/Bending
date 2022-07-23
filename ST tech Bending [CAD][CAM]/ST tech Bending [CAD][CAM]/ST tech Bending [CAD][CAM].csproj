@@ -26,7 +26,7 @@
     <UpdateUrl>https://github.com/STtech2017/Bending/tree/main/Setup/</UpdateUrl>
     <MinimumRequiredVersion>1.1.0.12</MinimumRequiredVersion>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
